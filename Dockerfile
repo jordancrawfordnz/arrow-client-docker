@@ -15,5 +15,6 @@ RUN mv /arrow-client/ca.pem /etc/arrow
 WORKDIR "/"
 RUN rm -rf /arrow-client
 
-#ENTRYPOINT ["arrow-client"]
-#CMD ["arr-rs.angelcam.com:8900", "-c", "/usr/share/ca-certificates", "-c", "/etc/arrow/ca.pem", "-d"]
+VOLUME ["/arrow-config"]
+
+ENTRYPOINT ["arrow-client", "arr-rs.angelcam.com:8900", "-c", "/usr/share/ca-certificates", "-c", "/etc/arrow/ca.pem", "--config-file=/arrow-config/config.json"]
