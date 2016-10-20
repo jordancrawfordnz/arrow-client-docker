@@ -3,6 +3,10 @@ USER root
 
 RUN apt-get update && apt-get install -y git libssl-dev libpcap-dev
 
+# Clean up.
+RUN apt-get clean
+RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
 # Install the Arrow client.
 WORKDIR "/"
 RUN git clone https://github.com/angelcam/arrow-client
