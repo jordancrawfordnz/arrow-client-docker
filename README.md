@@ -6,11 +6,13 @@
 
 # Arrow Client on Docker
 ### What is this?
-AngelCam is service that allows you to access your cameras from the cloud with features like cloud recording.
+[AngelCam](https://www.angelcam.com/) is service that allows you to access your cameras from the cloud with features like cloud recording.
 
-The Arrow client provides a secure connection between AngelCam and your network, rather than needing to make your camera web facing. AngelCam sells the AngelBox, a Raspberry Pi that can perform this task on your home network. However, advanced users can use the Arrow client directly on their existing equipment.
+The [Arrow client](https://github.com/angelcam/arrow-client) provides a secure connection between AngelCam and your network, rather than needing to make your camera web facing. AngelCam sells the AngelBox, a Raspberry Pi that can perform this task on your home network. However, advanced users can use the Arrow client directly on their existing equipment.
 
 This Docker image makes it easy to setup and run the Arrow client, independant of your computer's operating system.
+
+For more information, see my blog post, [Accessing an IP Camera Over the Internet](https://jordancrawford.kiwi/remote-access-ip-cam/).
 
 ## Building
 Use ``docker build -t jordancrawford/arrow-client .``.
