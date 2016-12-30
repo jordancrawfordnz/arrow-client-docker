@@ -20,7 +20,9 @@ Use ``docker build -t jordancrawford/arrow-client .``.
 ## Running
 Make a directory for your Arrow configuration. This is worth retaining as the ID will need to remain consistant between attempts.
 
-``docker run --mac-address=[MAC address] -v [path to config]:/arrow-config -d --name arrow --rm jordancrawford/arrow-client [camera configuration parameters]``
+``
+docker run --mac-address=[MAC address] -v [path to config]:/arrow-config -d --name arrow --rm --env RTSP_CAMERAS=[...] --env MJPEG_CAMERAS=[...] --env HTTP_CAMERAS=[...] --env TCP_CAMERAS=[...] jordancrawford/arrow-client
+``
 
 ### Getting a MAC Address
 A MAC address identifies physical equipment on a network. Because Docker uses virtual machines, a random MAC address is given to a container when it starts. AngelCam identifies your Arrow client with a MAC address so this should stay constant for your configuration files.
@@ -31,29 +33,17 @@ Generate a MAC address using a tool like the [MAC Address Generator](http://www.
 The Arrow client must be verified by showing a QR code to the camera. To avoid having to repeat this process, you'll want to keep your configuration file stored somewhere constant. The configuration folder (``/arrow-config``) is a volume in the image, but it is recommended that you map this to a location on your filesystem.
 
 ### Adding cameras
-#### Network discovery
-Arrow supports network discovery. This image compiles with the network discovery functunality included, however this has not been tested (@jordancrawfordnz couldn't get this working). This is likely due to the Docker environment.
-
-Please create an issue or pull request if you have any thoughts or solutions.
-
 
 #### Manually adding cameras
-To manually add cameras, include a camera configuration parameter for each camera.
+To manually add cameras, fill in the ``RTSP_CAMERAS``, ``MJPEG_CAMERAS``, ``HTTP_CAMERAS`` and ``TCP_CAMERAS`` environment variables. Use comma separated values to include more than one camera.
 
-These follow the syntax:
+For example, if you have an RTSP camera at ``rtsp://192.168.1.20/stream`` use:
+``docker run --mac-address=[MAC address] -v [path to config]:/arrow-config -d --name arrow --rm --env RTSP_CAMERAS=rtsp://192.168.1.20/stream jordancrawford/arrow-client``
 
-- ``-r URL`` for RTSP services.
-- ``-m URL`` for MJPEG services.
-- ``-h addr`` for HTTP services.
-- ``-t addr`` for TCP services.
-
-([full details in the Arrow client source](https://github.com/angelcam/arrow-client/blob/master/src/main.rs))
-
-For example, if you have a RTSP camera with the IP of 192.168.1.20, use:
-``docker run --mac-address=[MAC address] -v [path to config]:/arrow-config -d --name arrow --rm jordancrawford/arrow-client -r 192.168.1.20``
+For multiple cameras, e.g.: ``rtsp://192.168.1.20/stream`` and ``rtsp://192.168.1.21/stream``, use the ``RTSP_CAMERAS`` value of ``rtsp://192.168.1.20/stream,rtsp://192.168.1.21/stream``.
 
 ### Setting up in AngelCam
 [Please refer to the Arrow client quick start guide](https://github.com/angelcam/arrow-client/wiki/Quick-Start).
 
 #### Using multiple cameras
-If you want to use the Arrow client with multiple cameras, you may encounter an issue with the AngelCam website where you aren't given the option to pair two cameras. This is a known issue that they are working on, and the solution is to request an AngelBox ID from their support team with your Arrow client UUID (can obtain this from the config JSON file that gets created). [See more about this issue.](https://github.com/angelcam/arrow-client/issues/5).
+If you want to use the Arrow client with multiple cameras, you may encounter an issue with the AngelCam website where you aren't given the option to pair two cameras. This is a known issue that they are working on, and the solution is to request an AngelBox ID from their support team with your Arrow client UUID (can obtain this from the config JSON file that gets created). [See more about this issue.](https://github.com/angelcam/arrow-client/issues/5)
