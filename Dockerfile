@@ -1,4 +1,4 @@
-FROM schickling/rust
+FROM scorpil/rust
 USER root
 
 RUN apt-get update && apt-get install -y git libssl-dev libpcap-dev
@@ -21,8 +21,8 @@ RUN mv /arrow-client/ca.pem /etc/arrow
 WORKDIR "/"
 RUN rm -rf /arrow-client
 
-COPY "run.sh"
+COPY run.sh /
 
 VOLUME ["/arrow-config"]
 
-COMMAND "run.sh"
+CMD "/run.sh"

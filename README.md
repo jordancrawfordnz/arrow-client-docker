@@ -21,7 +21,7 @@ Use ``docker build -t jordancrawford/arrow-client .``.
 Make a directory for your Arrow configuration. This is worth retaining as the ID will need to remain consistant between attempts.
 
 ``
-docker run --mac-address=[MAC address] -v [path to config]:/arrow-config -d --name arrow --rm --env RTSP_CAMERAS=[...] --env MJPEG_CAMERAS=[...] --env HTTP_CAMERAS=[...] --env TCP_CAMERAS=[...] jordancrawford/arrow-client
+docker run --mac-address=[MAC address] -v [path to config]:/arrow-config -d --name arrow --env RTSP_CAMERAS=[...] --env MJPEG_CAMERAS=[...] --env HTTP_CAMERAS=[...] --env TCP_CAMERAS=[...] jordancrawford/arrow-client
 ``
 
 ### Getting a MAC Address
@@ -38,7 +38,7 @@ The Arrow client must be verified by showing a QR code to the camera. To avoid h
 To manually add cameras, fill in the ``RTSP_CAMERAS``, ``MJPEG_CAMERAS``, ``HTTP_CAMERAS`` and ``TCP_CAMERAS`` environment variables. Use comma separated values to include more than one camera.
 
 For example, if you have an RTSP camera at ``rtsp://192.168.1.20/stream`` use:
-``docker run --mac-address=[MAC address] -v [path to config]:/arrow-config -d --name arrow --rm --env RTSP_CAMERAS=rtsp://192.168.1.20/stream jordancrawford/arrow-client``
+``docker run --mac-address=[MAC address] -v [path to config]:/arrow-config -d --name arrow --env RTSP_CAMERAS=rtsp://192.168.1.20/stream jordancrawford/arrow-client``
 
 For multiple cameras, e.g.: ``rtsp://192.168.1.20/stream`` and ``rtsp://192.168.1.21/stream``, use the ``RTSP_CAMERAS`` value of ``rtsp://192.168.1.20/stream,rtsp://192.168.1.21/stream``.
 
