@@ -12,7 +12,7 @@ The [Arrow client](https://github.com/angelcam/arrow-client) provides a secure c
 
 This Docker image makes it easy to setup and run the Arrow client, independant of your computer's operating system.
 
-For more information, see my blog post, [Accessing an IP Camera Over the Internet](https://jordancrawford.kiwi/remote-access-ip-cam/).
+For more information, see my blog post, [Accessing an IP Camera Over the Internet](https://jc.kiwi/remote-access-ip-cam/).
 
 ## Building
 Use ``docker build -t jordancrawford/arrow-client .``.
