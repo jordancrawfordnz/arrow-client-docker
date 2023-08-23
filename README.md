@@ -1,6 +1,4 @@
-[View on Docker Hub](https://hub.docker.com/r/jordancrawford/arrow-client/)
-
-[View on GitHub](https://github.com/jordancrawfordnz/arrow-client-docker)
+**This repo is archived.** It is no longer being maintained and it may longer work with modern versions of the arrow-client.
 
 ---
 
